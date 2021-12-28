@@ -45,7 +45,7 @@ void evidence_Axes() {
 
 /* evidence_rect: test graph */
 void evidence_graph() {
-   graph(1, 0, 0, 1, -2, 2, -4, 4); //only works when xleft = -xright because of line 74... how to store original xleft?
+   graph(1, 0, 0, 1, -3, 4, -1, 16); 
     /* more tests at your discretion */
 }
 

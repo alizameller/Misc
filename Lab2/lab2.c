@@ -42,7 +42,7 @@ void xAxis(int xleft, int xright) {
     }
 }
 
-void Axes(double step, int xleft, int xright, int ybottom, int ytop) {
+void axes(double step, int xleft, int xright, int ybottom, int ytop) {
     if (ytop < ybottom) {
         return;
     } else if (ytop == 0) {
@@ -57,23 +57,33 @@ void Axes(double step, int xleft, int xright, int ybottom, int ytop) {
     }
 }
 
+void point(double a, double b, double c, double step, int x, int xleft, int xright, 
+           int ybottom, int ytop, int y){
+    y = a * (x * x) + b * x + c;
+    if (ytop == y && x <= xright) {
+        printf("*");
+        point(a, b, c, step, x + 1, xleft, xright, ybottom, ytop, y); 
+    } else if (ytop != y && x <= xright) {
+        axes(step, x, xright, ybottom, ytop); 
+        point(a, b, c, step, x + 1, xleft, xright, ybottom, ytop, y);        
+    } else {
+        return; 
+    }       
+}
+
 void graph(double a, double b, double c, double step, int xleft, int xright, 
            int ybottom, int ytop) {
-           double y = a * (xleft * xleft) + b * xleft + c; 
-           
-           if (ytop < ybottom) {
-               return;
-           } else if (ytop == y && xleft <= xright) {
-               printf("*");
-               graph(a, b, c, step, xleft + 1, xright, ybottom, ytop); 
-           } else if (ytop != y && xleft <= xright) {
-               Axes(step, xleft, xright, ybottom, ytop); 
-               graph(a, b, c, step, xleft + 1, xright, ybottom, ytop); 
-           } else {
-               printf("\n");
-               xleft = -2; //need to set to original xleft value
-               ytop = ytop - step; 
-               graph(a, b, c, step, xleft, xright, ybottom, ytop); 
-           }
-
-        }
+    double y = 0; 
+    int x = xleft; 
+    if (ytop < ybottom) {
+        printf("\n");
+        return;
+    } else {
+        printf("\n");
+        point(a, b, c, step, x, xleft, xright, ybottom, ytop, y);
+        x = xleft; //need original xleft value
+        ytop = ytop - step; 
+        graph(a, b, c, step, xleft, xright, ybottom, ytop); 
+    }       
+        
+}
