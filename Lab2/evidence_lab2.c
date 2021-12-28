@@ -26,9 +26,20 @@ void evidence_tri()
     /* more tests at your discretion */
 }
 
-/* evidence_rect: test graph */
-void evidence_graph()
-{   graph(1, 0, 0, 0, -4, 4, 0, 0);
+/* evidence_rect: test findY */
+void evidence_findY() {
+    /* 
+    printf("y = x^2\n");
+    findY(1, 0, 0, 0, -4, 4, 0, 0);
+    printf("y = x^2 - 1\n");
+    findY(1, 0, -1, 0, -4, 4, 0, 0); 
+    */
+    /* more tests at your discretion */
+}
+
+/* evidence_rect: test findY */
+void evidence_Axes() {
+    Axes(1, -4, 4, -3, 4); //decimals do not work why?
     /* more tests at your discretion */
 }
 
@@ -36,6 +47,7 @@ int main(int argc, char *argv[])
 {
     evidence_rect();
     evidence_tri();
-    evidence_graph();
+    evidence_findY();
+    evidence_Axes();
     return 0;
 }
