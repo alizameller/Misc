@@ -60,7 +60,7 @@ void Axes(double step, int xleft, int xright, int ybottom, int ytop) {
 void graph(double a, double b, double c, double step, int xleft, int xright, 
            int ybottom, int ytop) {
            double y = a * (xleft * xleft) + b * xleft + c; 
-
+           
            if (ytop < ybottom) {
                return;
            } else if (ytop == y && xleft <= xright) {
@@ -71,7 +71,7 @@ void graph(double a, double b, double c, double step, int xleft, int xright,
                graph(a, b, c, step, xleft + 1, xright, ybottom, ytop); 
            } else {
                printf("\n");
-               xleft = -2;
+               xleft = -2; //need to set to original xleft value
                ytop = ytop - step; 
                graph(a, b, c, step, xleft, xright, ybottom, ytop); 
            }
