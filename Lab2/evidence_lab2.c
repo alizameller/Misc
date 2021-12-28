@@ -37,11 +37,18 @@ void evidence_findY() {
     /* more tests at your discretion */
 }
 
-/* evidence_rect: test findY */
+/* evidence_rect: test Axes */
 void evidence_Axes() {
-    Axes(1, -4, 4, -3, 4); //decimals do not work why?
+   // Axes(1, -4, 4, -3, 4); //decimals do not work
     /* more tests at your discretion */
 }
+
+/* evidence_rect: test graph */
+void evidence_graph() {
+   graph(1, 0, 0, 1, -2, 2, -4, 4); //only works when xleft = -xright because of line 74... how to store original xleft?
+    /* more tests at your discretion */
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -49,5 +56,6 @@ int main(int argc, char *argv[])
     evidence_tri();
     evidence_findY();
     evidence_Axes();
+    evidence_graph();
     return 0;
 }

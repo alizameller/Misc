@@ -30,51 +30,50 @@ void aRow(int a) {
     
 }
 
-void findY(double a, double b, double c, int xleft, int xright){
-    if (xleft > xright){
-        return;
-    } else {
-        double Y = a*((xleft)*(xleft)) + b*(xleft) + c;
-        printf("%f\n", Y); 
-        findY(a, b, c, xleft + 1, xright); 
-    }
-}
-
-void emptySpace(int n) {
-    if (n == 0) {
-        return;
-    } else {
-        printf(" "); 
-        emptySpace(n-1);
-    }
-}
-
-void Axes(double step, int ybottom, int ytop, int xleft, int xright) {
-    if (ytop < ybottom) {
-        return;
-    } else if (ytop == 0) {
-        xAxis(xleft, xright);
-        Axes(step, ybottom, ytop-step, xleft, xright);
-    } else {
-        emptySpace(-(xleft));
-        printf("|\n");
-        Axes(step, ybottom, ytop-step, xleft, xright);
-    }
-}
-
 void xAxis(int xleft, int xright) {
    if (xleft > xright) {
        printf("\n");
     } else if (xleft == 0) {
         printf("+");
-        xAxis(xleft + 1, xright);
+        return;
     } else {
         printf("-");
-        xAxis(xleft + 1, xright);
+        return; 
+    }
+}
+
+void Axes(double step, int xleft, int xright, int ybottom, int ytop) {
+    if (ytop < ybottom) {
+        return;
+    } else if (ytop == 0) {
+        xAxis(xleft, xright);
+        return;
+    } else if (xleft == 0) {
+        printf("|");
+        return; 
+    } else {
+        printf(" ");
+        return;
     }
 }
 
 void graph(double a, double b, double c, double step, int xleft, int xright, 
            int ybottom, int ytop) {
-               Axes(step, ybottom, ytop, xleft, xright);
+           double y = a * (xleft * xleft) + b * xleft + c; 
+
+           if (ytop < ybottom) {
+               return;
+           } else if (ytop == y && xleft <= xright) {
+               printf("*");
+               graph(a, b, c, step, xleft + 1, xright, ybottom, ytop); 
+           } else if (ytop != y && xleft <= xright) {
+               Axes(step, xleft, xright, ybottom, ytop); 
+               graph(a, b, c, step, xleft + 1, xright, ybottom, ytop); 
+           } else {
+               printf("\n");
+               xleft = -2;
+               ytop = ytop - step; 
+               graph(a, b, c, step, xleft, xright, ybottom, ytop); 
            }
+
+        }
